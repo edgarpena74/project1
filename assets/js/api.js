@@ -1,7 +1,6 @@
 /*
 This is the main API function for the primary album data. 
 The user can search for an Album name and it will either return the data as an array of objects or will display an error 
-
 The returned array will look like this: 
 [0: {
   album: "Album Name"
@@ -24,8 +23,7 @@ The returned array will look like this:
 let searchForm = document.getElementById("searchForm");
 let submitSearchBtn = document.getElementById("searchButton");
 let parentCard = document.getElementById("parentCard");
-let cardDiv = document.createElement("div");
-  cardDiv.className = "card";
+
 //card content
 let cardContent = document.createElement("div");
   cardContent.className = "card-content";
@@ -135,7 +133,7 @@ trackListGetter = (album) => {
         tracklistLI.textContent = trackList[index]
     console.log("arr data  " + trackList[index])
     
-    cardDiv.appendChild(cardReveal);
+    // cardDiv.appendChild(cardReveal);
     cardReveal.appendChild(divCR);
     divCR.appendChild(tracklistContainer)
     tracklistContainer.appendChild(trackListRow)
@@ -173,7 +171,8 @@ albumArtFallbackHandler = (albumArtURL) => {
 };
 
 albumCardGenerator = (returnObject) => {
-  
+  let cardDiv = document.createElement("div");
+  cardDiv.className = "card";
   //Image info
   let imgDiv = document.createElement("div");
   let imgURL = albumArtFallbackHandler(returnObject.albumArt);
@@ -193,20 +192,20 @@ albumCardGenerator = (returnObject) => {
 
   //Info
   //artist name
-  let artistCard = document.createElement("div");
+  let artistCard = document.createElement("p");
   artistCard.textContent = "Artist: " + returnObject.artist;
   //album name
-  let albumCard = document.createElement("div");
+  let albumCard = document.createElement("p");
   albumCard.textContent = "Album Title: " + returnObject.album;
   //album desccription
-  let albumDescCard = document.createElement("div");
+  let albumDescCard = document.createElement("p");
   albumDescCard.textContent = "Album Description: " + returnObject.albumDesc;
   //album runtime
-  let runtimeCard = document.createElement("div");
+  let runtimeCard = document.createElement("p");
   runtimeCard.textContent = "Album Runtime: " + returnObject.runtime;
 
   
-  //crad image
+  //card image
   cardDiv.appendChild(imgDiv);
   imgDiv.appendChild(img);
   //card content
@@ -224,12 +223,7 @@ albumCardGenerator = (returnObject) => {
   //parent card
   parentCard.appendChild(cardDiv);
 
-  //main card
-  //artist name
-  //album
-  //duration
-
-  //reveal the rest of the shit
+ 
 };
 
 clearOutputDiv = (selector) => {
